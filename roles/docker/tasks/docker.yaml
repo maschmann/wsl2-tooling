@@ -1,0 +1,36 @@
+---
+
+- name: Check if docker is already installed
+  stat: 
+    path: "{{ local_user_home }}/root/get-docker.sh"
+  register: docker_convenience_script
+
+- name: ensure packages are absent
+  apt:
+    state: absent
+    name:
+      - docker 
+      - docker-engine 
+      - docker.io 
+      - containerd 
+      - runc
+  when: not docker_convenience_script.stat.exists
+
+- name: get docker convenience script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: "{{ local_user_home }}/get-docker.sh"
+    mode: '0750'
+  when: not docker_convenience_script.stat.exists
+
+- name: run convenience script
+  ansible.builtin.shell: "{{ local_user_home }}/get-docker.sh"
+  args:
+    executable: /bin/bash
+  when: not docker_convenience_script.stat.exists
+
+- name: add docker group for admin user
+  ansible.builtin.user:
+    name: "{{ local_user }}"
+    groups: docker
+    append: yes

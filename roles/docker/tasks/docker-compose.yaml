@@ -1,0 +1,13 @@
+---
+
+- name: Check if docker-compose is already installed
+  stat: 
+    path: '/usr/bin/docker-compose'
+  register: docker_compose
+
+- name: get docker-compose
+  ansible.builtin.get_url:
+    url: "{{ docker_compose_release }}"
+    dest: '/usr/bin/docker-compose'
+    mode: '0755'
+  when: not docker_compose.stat.exists

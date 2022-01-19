@@ -1,0 +1,33 @@
+- name: install syspackages
+  apt:
+    state: latest
+    name:
+      - cifs-utils
+      - telnet
+      - apt-transport-https
+      - vim
+      - curl
+      - git
+      - git-extras
+      - screen
+      - strace
+      - sysstat
+      - sshfs
+      - build-essential
+      - wget
+      - bash-completion
+      - ntp
+      - ntpdate
+      - unzip
+      - bzip2
+      - zip
+      - p7zip-full
+      - unrar-free
+      - arj
+      - samba
+      - samba-common
+      - smbclient
+      - zsh
+      - powerline
+      - fonts-powerline
+      - net-tools

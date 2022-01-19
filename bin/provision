@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export ANSIBLE_NOCOWS=1 # m00h
+ansible-playbook ./localhost.yaml -i localhost --connection=local --ask-become-pass
