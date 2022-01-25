@@ -2,7 +2,7 @@
 
 - name: Check if docker is already installed
   stat: 
-    path: "{{ local_user_home }}/root/get-docker.sh"
+    path: "{{ local_user_home }}/get-docker.sh"
   register: docker_convenience_script
 
 - name: ensure packages are absent
