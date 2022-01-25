@@ -1,0 +1,5 @@
+#!/bin/bash
+# Start Services if not running
+
+[ "`service ssh status | sed 's/.*not running.*/nok/'`" == "nok" ] && sudo service ssh start
+[ "`service docker status | sed 's/.*not running.*/nok/'`" == "nok" ] && sudo service docker start

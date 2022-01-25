@@ -47,3 +47,47 @@
 
 - name: final sudoers file check
   shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+
+- name: ensure service start script present
+  template:
+   src: start-services.j2
+   dest: "{{ local_user_home }}/start-services"
+   owner: "{{ local_user }}"
+   group: "{{ local_user }}"
+   mode: 0774
+
+# add profile file lines
+- name: check if zsh is present
+  stat:
+    path: "{{ local_user_home }}/.zshrc"
+  register: zsh_present
+
+- name: add docker ENV var to .zshrc
+  lineinfile:
+    dest: "{{ local_user_home }}/.zshrc"
+    state: present
+    regexp: '^export DOCKER_HOST\=tcp\:\/\/localhost\:2375'
+    line: 'export DOCKER_HOST=tcp://localhost:2375'
+  when: zsh_present.stat.exists
+
+- name: add autostart for services to .zshrc
+  lineinfile:
+    dest: "{{ local_user_home }}/.zshrc"
+    state: present 
+    regexp: '^\~\/start-services'
+    line: '~/start-services'
+  when: zsh_present.stat.exists
+
+- name: add docker ENV var to .bashrc
+  lineinfile:
+    dest: "{{ local_user_home }}/.bashrc"
+    state: present 
+    regexp: '^export DOCKER_HOST\=tcp\:\/\/localhost\:2375'
+    line: 'export DOCKER_HOST=tcp://localhost:2375'
+
+- name: add autostart for services to .bashrc
+  lineinfile:
+    dest: "{{ local_user_home }}/.bashrc"
+    state: present 
+    regexp: '^\~\/start-services'
+    line: '~/start-services'
