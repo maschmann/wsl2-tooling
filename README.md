@@ -40,7 +40,7 @@ wsl --terminate <machine>
 #### Ansible, k8s, minikube & skaffold
 Um die Installation des Toolings möglichst einfach zu gestalten, am besten das Repository der wsl2-tools klonen:
 ```bash
-git clone https://<>:<>/wsl2-tools.git
+git clone https://github.com/maschmann/wsl2-tooling.git
 ```
 
 Danach in der WSL2 Konsole, im wsl2-tools Verzeichnis:
