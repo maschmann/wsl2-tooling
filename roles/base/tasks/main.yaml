@@ -62,13 +62,13 @@
     path: "{{ local_user_home }}/.zshrc"
   register: zsh_present
 
-- name: add docker ENV var to .zshrc
-  lineinfile:
-    dest: "{{ local_user_home }}/.zshrc"
-    state: present
-    regexp: '^export DOCKER_HOST\=tcp\:\/\/localhost\:2375'
-    line: 'export DOCKER_HOST=tcp://localhost:2375'
-  when: zsh_present.stat.exists
+#- name: add docker ENV var to .zshrc
+#  lineinfile:
+#    dest: "{{ local_user_home }}/.zshrc"
+#    state: present
+#    regexp: '^export DOCKER_HOST\=tcp\:\/\/localhost\:2375'
+#    line: 'export DOCKER_HOST=tcp://localhost:2375'
+#  when: zsh_present.stat.exists
 
 - name: add autostart for services to .zshrc
   lineinfile:
