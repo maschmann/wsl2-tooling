@@ -1,0 +1,7 @@
+---
+
+- name: Ensure minikube is present
+  ansible.builtin.get_url:
+    url: "{{ minikube_release_url }}"
+    dest: '/usr/bin/minikube'
+    mode: '0755'

@@ -1,0 +1,7 @@
+---
+
+- name: Ensure skaffold is present
+  ansible.builtin.get_url:
+    url: "{{ skaffold_release_url }}"
+    dest: '/usr/bin/skaffold'
+    mode: '0755'

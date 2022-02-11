@@ -7,6 +7,9 @@
     local_user: "{{ lookup('env','USER') }}"
     local_user_home: "{{ lookup('env','HOME') }}"
     docker_compose_release: "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64"
+    minikube_release_url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+    kubectx_release_url: "https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx_v0.9.4_linux_x86_64.tar.gz"
+    kubens_release_url: "https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens_v0.9.4_linux_x86_64.tar.gz"
 
   pre_tasks:
     - name: Update repository
@@ -21,4 +24,5 @@
   roles:
     - base
     - docker
+    - minikube
     #- utils

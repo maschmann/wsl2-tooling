@@ -1,0 +1,21 @@
+---
+- name: Add key
+  apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg state=present
+
+- name: Add repository
+  apt_repository: repo='deb https://apt.kubernetes.io/ kubernetes-xenial main' state=present
+
+- name: install kubectl
+  action: apt pkg={{item}} state=latest
+  with_items:
+    - kubectl
+
+- name: install kubectx and kubens
+  ansible.builtin.unarchive:
+    src: "{{ item.url }}"
+    dest: /usr/bin
+    mode: 0755
+    remote_src: yes
+  with_items:
+    - { url: "{{ kubectx_release_url }}" }
+    - { url: "{{ kubens_release_url }}" }
