@@ -10,6 +10,8 @@
     minikube_release_url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
     kubectx_release_url: "https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx_v0.9.4_linux_x86_64.tar.gz"
     kubens_release_url: "https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens_v0.9.4_linux_x86_64.tar.gz"
+    skaffold_release_url: "https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64"
+
 
   pre_tasks:
     - name: Update repository
@@ -25,4 +27,4 @@
     - base
     - docker
     - minikube
-    #- utils
+    - skaffold
