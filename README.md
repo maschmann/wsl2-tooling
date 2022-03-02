@@ -6,6 +6,10 @@ Voraussetzungen sind:
 * Ubuntu 20.04 (default)
 * eingerichteter lokaler Benutzer
 
+``` bash
+wsl -s Ubuntu-20.04
+``` 
+
 ### Cisco AnyConnect
 
 Im local network kein Problem, sobald mit VPN (Cisco AnyConnect) verbunden, geht die Konnektivität verloren.
@@ -35,6 +39,7 @@ WSL neu starten!
 
 ``` powershell
 wsl --terminate <machine>
+wsl --shutdown
 ```
 
 #### Ansible, k8s, minikube & skaffold
